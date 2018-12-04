@@ -1,0 +1,5 @@
+- hosts: test
+  tasks:
+        - name: Resetting kube agent...
+          shell: yes | kubeadm reset
+          #command: kubeadm reset

@@ -1,0 +1,50 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+          - name: Update package list
+            apt: update_cache=yes cache_valid_time=3000
+          - name: Install core packages
+            apt: name="{{corepackages}}" #state=present
+            vars:
+                    corepackages:
+                            - apt-transport-https
+                            - python
+                            - vim
+                            - docker.io
+            with_items: corepackage
+          - name: Start docker
+            service:
+                    name: docker
+                    state: started
+                    
+- hosts: kube-master kube-agents 
+  vars:
+          clusterpackages:
+                  - apt-transport-https
+                  - docker.io
+  remote_user: root
+  tasks:
+          - name: Add kubernetes repository key
+            apt_key:
+                url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+                state: present
+          - name: Add Kubernetes repository
+            apt_repository: repo='deb http://apt.kubernetes.io/ kubernetes-xenial main' state='present' filename='kubernetes.list' update_cache='yes'
+          - name: Install kubeley
+            apt: name='kubelet' state='present' update_cache='yes'
+          - name: Install kubadm
+            apt: name='kubeadm' state='present' update_cache='yes'
+          - name: Install kubctl
+            apt: name='kubectl' state='present' update_cache='yes'
+          - name: Install kub-cni
+            apt: name='kubernetes-cni' state='present' update_cache='yes'
+
+- hosts: kube-agents
+  tasks:
+          - name: Joining Cluster...
+            vars:
+                    master_ip: 10.30.16.10:6443
+                    token: d1kaph.tju1wm1g5k67pdlf
+                    cert-hash: sha256:4b4976f2148e75afcb1d87f5694cd9f7aae259941fa2e3bf4f4ec6ce652ba253
+                    command: kubeadm join {{ master_ip }} --token {{ token }} --discovery-token-ca-cert-hash {{ cert-hash }} 
