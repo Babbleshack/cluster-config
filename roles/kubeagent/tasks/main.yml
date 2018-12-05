@@ -26,4 +26,6 @@
     name: docker
     state: started
 
-- import_tasks: kubernetes.yml
+- import_tasks: join-cluster.yml
+  when:
+          - cluster_ready is success

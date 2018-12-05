@@ -2,3 +2,4 @@
 - hosts: kubemaster
   roles:
     - common
+    - kubemaster

@@ -2,3 +2,4 @@
 - hosts: kubeagents
   roles:
     - common
+    - kubeagent
