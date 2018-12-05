@@ -8,29 +8,11 @@
           --apiserver-advertise-address {{ kubemaster_ip }}
   register: init_cluster
 
-- name: Create kube config
-  file:
-        path: /opt/kubeconfig
-        state: directory
-  ##state: directory
 
-- name: Copy admin.conf to /opt/kubeconfig directory
-  when: init_cluster is succeeded
-  copy:
-          src: "{{ kubeadmin_conf }}"
-          dest: "{{ kube_conf }}"
-          owner: root
-          group: kubeusers
-          mode: 0775
-          remote_src: true
+- import_tasks: create_config_dir.yml
 
-- name: Deploy kubernetes dashboard into cluster
-  when: init_cluster is succeeded and enable_dashboard
-  command: |
-          kubectl --kubeconfig={{ kube_conf }} \
-          apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
-  register: create_result
-  until: create_result.rc == 0
-  retries: 5
-  delay: 2
-  ignore_errors: true
+- import_tasks: start_kubernetes.yml
+ 
+- import_tasks: dashboard.yml
+  when: started_kubelet is succeeded and enable_dashboard
+
