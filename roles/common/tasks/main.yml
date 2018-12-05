@@ -10,16 +10,16 @@
     name: "{{ corepackages }}"
     state: present
 
-- import_tasks: dockerce.yml
-  when:
-          - ansible_distribution|lower == 'ubuntu'
-          - distribution_release|lower == 'bionic'
-
-
 - import_tasks: docker.yml
   when:
           - ansible_distribution|lower == 'ubuntu'
-          - distribution_release|lower == 'xenial'
+          - ansible_distribution_release|lower == 'bionic'
+
+
+- import_tasks: dockerce.yml
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'xenial'
 
 - name: Start docker
   service:
