@@ -1,0 +1,4 @@
+---
+- hosts: kubeagents
+  roles:
+    - common

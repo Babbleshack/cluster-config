@@ -1,0 +1,31 @@
+# Install kubernetes repository and components
+- name: Add kubernetes repository key
+  apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      state: present
+- name: Add Kubernetes repository
+  apt_repository: 
+    repo: 'deb http://apt.kubernetes.io/ kubernetes-xenial main'
+    filename: 'kubernetes.list'
+    update_cache: 'yes'
+    state: present
+- name: Install kubeley
+  apt: 
+    name: 'kubelet'
+    state: 'present'
+    update_cache: 'yes'
+- name: Install kubadm
+  apt: 
+    name: 'kubeadm'
+    state: 'present'
+    update_cache: 'yes'
+- name: Install kubctl
+  apt: 
+    name: 'kubectl'
+    state: 'present'
+    update_cache: 'yes'
+- name: Install kub-cni
+  apt:
+    name: 'kubernetes-cni'
+    state: 'present'
+    update_cache: 'yes'

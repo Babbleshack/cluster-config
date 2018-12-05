@@ -1,0 +1,4 @@
+# Install docker from apt
+- apt:
+  name: docker.io 
+  state: present
