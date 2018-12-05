@@ -1,5 +1,6 @@
 ---
 - hosts: kubeagents
+  remote_user: root
   roles:
     - common
     - kubeagent

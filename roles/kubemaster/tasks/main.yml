@@ -1,7 +1,13 @@
 ---
 ##Configure kubemaster
+#
+#Do kubeadm reset
+- name: Reset cluster 
+  shell: kubeadm reset --force
+  register: cluster_reset
+
 - name: Initialise  Kubernetes cluster
-  when: reset_cluster is success
+  when: cluster_reset is success
   shell: |
           kubeadm init --pod-network-cidr {{ pod_network_cidr }} \
           --token {{ kube_auth_token }} \

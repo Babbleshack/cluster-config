@@ -1,5 +1,6 @@
 # cluster-configuration
 ## TODO:
+- [ ] Add Kubernetes flannel network overlay
 - [ ] Include PXE config
 - [ ] Include Ansible play for pxe server, http, pxe
 - [x] Include Ansible play for Kube-master

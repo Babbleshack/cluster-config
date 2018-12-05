@@ -6,7 +6,7 @@
 - name: Copy admin.conf to /opt/kubeconfig directory
   when: init_cluster is succeeded
   copy:
-          src: "{{ kubeadmin_conf }}"
+          src: "{{ kube_admin_conf }}"
           dest: "{{ kube_conf }}"
           owner: root
           group: kubeusers
