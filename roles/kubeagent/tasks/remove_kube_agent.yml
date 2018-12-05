@@ -1,0 +1,5 @@
+---
+# Remove kube agent from cluster
+- name: Reset Kubernetes components at agent
+  shell: kubeadm reset --force
+  register: reset_cluster

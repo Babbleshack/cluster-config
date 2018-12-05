@@ -1,0 +1,9 @@
+# Ex 2: A collection of hosts belonging to the 'webservers' group
+[localhost]
+10.30.16.10 ansible_connection=ssh ansible_user=root
+
+[kubemaster]
+10.30.16.10 ansible_connection=ssh ansible_user=root
+
+[kubeagents]
+10.30.16.[50:97] ansible_user=root

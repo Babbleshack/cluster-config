@@ -1,3 +1,4 @@
+---
 ## Install Docker CE see docker documentation
 - name: Install docker-ce cert
   apt_key:
@@ -5,10 +6,10 @@
     state: present
 - name: Add docker-ce repository
   apt_repository: 
-		repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
-		filename: "docker-ce.list"
-		state: present
-		update_cache: "yes"
+          repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+          filename: docker-ce.list
+          state: present
+          update_cache: yes
 - name: Install docker-ce 17.9
-	apt:
-		name:  docker-ce=17.09.0~ce-0~ubuntu
+  apt:
+          name:  docker-ce=17.09.0~ce-0~ubuntu

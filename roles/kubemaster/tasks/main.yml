@@ -1,0 +1,18 @@
+---
+##Configure kubemaster
+- name: Initialise  Kubernetes cluster
+  when: reset_cluster is success
+  shell: |
+          kubeadm init --pod-network-cidr {{ pod_network_cidr }} \
+          --token {{ kube_auth_token }} \
+          --apiserver-advertise-address {{ kubemaster_ip }}
+  register: init_cluster
+
+
+- import_tasks: create_config_dir.yml
+
+- import_tasks: start_kubernetes.yml
+ 
+- import_tasks: dashboard.yml
+  when: started_kubelet is succeeded and enable_dashboard
+

@@ -1,6 +1,5 @@
 ---
 # Install core packages (docker, python, docker, kube-components)
-hosts: all
 - name: Install core packages
   vars:
     corepackages:
@@ -11,18 +10,20 @@ hosts: all
     name: "{{ corepackages }}"
     state: present
 
-- name: Install docker CE 
-  import_task: "docker-ce.yml"
-  when: ansible_facts['ansible_distribution']|lower == 'ubuntu' and ansible_facts['distribution_release']|lower == 'xenial'
+- import_tasks: dockerce.yml
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - distribution_release|lower == 'bionic'
 
-- name: Install docker.io 
-  import_task: docker.yml
-  when: ansible_facts['ansible_distribution']|lower == 'ubuntu' and ansible_facts['distribution_release']|lower == 'xenial'
+
+- import_tasks: docker.yml
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - distribution_release|lower == 'xenial'
 
 - name: Start docker
   service:
     name: docker
     state: started
 
-- name: Install Kubernetes components
-  import_task: Kubernetes.yml
+- import_tasks: kubernetes.yml

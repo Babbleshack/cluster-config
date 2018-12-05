@@ -1,0 +1,18 @@
+#ansible
+ansible_user: root
+
+#kubernetes
+kubemaster_ip : 10.30.16.10:6443
+kube_auth_token : d1kaph.tju1wm1g5k67pdlf
+kube_cert_hash : sha256:4b4976f2148e75afcb1d87f5694cd9f7aae259941fa2e3bf4f4ec6ce652ba253
+
+pod_network_cidr: 10.244.0.0/16
+advertise_address: 10.30.16.10
+
+enable_dashboard: yes
+
+#dirs
+kube_admin_conf: /etc/kubernetes/admin.conf
+kubeOptDir: /opt/kubeconfig
+kube_conf: /opt/kubeconfig/config
+
