@@ -3,8 +3,10 @@ ansible_user: root
 
 #kubernetes
 kubemaster_ip : 10.30.16.10
-kube_auth_token : d1kaph.tju1wm1g5k67pdlf
-kube_cert_hash : sha256:4b4976f2148e75afcb1d87f5694cd9f7aae259941fa2e3bf4f4ec6ce652ba253
+kubemaster_join_ip: 10.30.16.10:6443
+#kube_auth_token : d1kaph.tju1wm1g5k67pdlf
+kube_auth_token : x4hi8e.hjr8w5p902mmhrto 
+kube_cert_hash : sha256:321e0bfef8f85e2a78803e9d238d6430d849b4070b4d3c0c4f3bdd175e8b1c55
 
 pod_network_cidr: 10.244.0.0/16
 advertise_address: 10.30.16.10
@@ -13,6 +15,13 @@ enable_dashboard: yes
 
 #dirs
 kube_admin_conf: /etc/kubernetes/admin.conf
+kube_conf_dir: /opt/kubeconfig/config-files
 kubeOptDir: /opt/kubeconfig
+kube_opt_dir: /opt/kubeconfig
 kube_conf: /opt/kubeconfig/config
 
+# Groups and Users
+kube_users_g: kubeusers
+
+user: user
+user_g: user

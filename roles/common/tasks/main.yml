@@ -1,5 +1,7 @@
 ---
 # Install core packages (docker, python, docker, kube-components)
+- import_tasks: remove-swap.yml
+      
 - name: Install core packages
   vars:
     corepackages:
@@ -21,9 +23,10 @@
           - ansible_distribution|lower == 'ubuntu'
           - ansible_distribution_release|lower == 'xenial'
 
-- name: Start docker
+- name: Start and enable docker
   service:
     name: docker
     state: started
+    enabled: yes
 
 - import_tasks: kubernetes.yml

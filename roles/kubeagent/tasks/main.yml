@@ -1,5 +1,10 @@
 ---
 # Install core packages (docker, python, docker, kube-components)
+- import_tasks: reset_cluster.yml
+  tags:
+          - join_cluster
 - import_tasks: join-cluster.yml
-  when:
-          - cluster_ready is success
+  tags:
+          - join_cluster
+
+

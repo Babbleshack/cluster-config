@@ -9,7 +9,7 @@
     filename: 'kubernetes.list'
     update_cache: 'yes'
     state: present
-- name: Install kubeley
+- name: Install kubelet
   apt: 
     name: 'kubelet'
     state: 'present'

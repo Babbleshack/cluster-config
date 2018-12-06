@@ -1,0 +1,5 @@
+---
+#Reset cluster/agent
+- name: Reset cluster 
+  shell: kubeadm reset --force
+  register: cluster_reset
