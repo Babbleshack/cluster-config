@@ -1,0 +1,14 @@
+---
+#Initialise flannel
+- name: Copy flannel confi
+  copy:
+          src: files/kube-flannel.yml
+          dest: "{{ kube_conf_dir }}"
+          owner: root
+          group: "{{ kube_users_g }}"
+          mode: 0775
+- name: Initialise flannel kube service
+  when: init_cluster is success 
+  shell: |
+          kubectl apply -f {{ kube_conf_dir}}/kube-flannel.yml
+
