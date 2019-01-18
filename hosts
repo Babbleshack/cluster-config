@@ -3,9 +3,7 @@
 10.30.16.10 ansible_connection=ssh ansible_user=root
 
 [kubemaster]
-#10.30.16.10 ansible_connection=ssh ansible_user=root
 194.80.38.50 ansible_connection=ssh ansible_user=root
 
 [kubeagents]
-#10.30.16.[50:97] ansible_user=root
-10.30.16.50 ansible_user=root
+10.30.16.[50:97] ansible_user=root
