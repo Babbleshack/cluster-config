@@ -12,13 +12,18 @@
           --apiserver-advertise-address {{ kubemaster_ip }}
   register: init_cluster
 
-
-- import_tasks: create_config_dir.yml
+- name: Copy admin.conf to /opt/kubeconfig directory
+  copy:
+          src: "{{ KUBE_ADMIN_CONF }}"
+          dest: "{{ KUBE_CONF_DIR }}"
+          owner: root
+          group: kubeusers
+          mode: 0775
+          remote_src: true
 
 - import_tasks: start_kubernetes.yml
 
 - import_tasks: init_flannel.yml
  
 - import_tasks: dashboard.yml
-  when: started_kubelet is succeeded and enable_dashboard
 

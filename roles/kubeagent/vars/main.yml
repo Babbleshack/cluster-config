@@ -1,5 +1,1 @@
 ---
-#Kubeagent global vars
-#kubemaster_ip : 10.30.16.10:6443
-#auth_token : d1kaph.tju1wm1g5k67pdlf
-#cert_hash : sha256:4b4976f2148e75afcb1d87f5694cd9f7aae259941fa2e3bf4f4ec6ce652ba253

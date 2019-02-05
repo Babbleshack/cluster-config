@@ -29,3 +29,23 @@
     name: 'kubernetes-cni'
     state: 'present'
     update_cache: 'yes'
+- name: Create kube config
+  file:
+        path: "{{ KUBE_CONF_DIR }}" 
+        state: directory
+
+- name: Kubernetes:: create kubelet config file
+  copy:
+          src: files/kubelet-config.yml
+          dest: "{{ KUBE_CONF_DIR }}/kubelet-config.yml"
+          owner: root
+          group: "{{ KUBE_USER_GROUP }}"
+          mode: 0755
+
+- name: Kubernetes:: Copy kubelet service file
+  copy:
+          src: files/kubelet.service
+          dest: "/lib/systemd/system/kubelet.service"
+          owner: root
+          group: root
+          force: yes

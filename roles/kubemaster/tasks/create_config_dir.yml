@@ -1,13 +1,12 @@
 - name: Create kube config
   file:
-        path: /opt/kubeconfig
+        path: "{{ KUBE_CONF_DIR }}"
         state: directory
 
 - name: Copy admin.conf to /opt/kubeconfig directory
-  when: init_cluster is succeeded
   copy:
-          src: "{{ kube_admin_conf }}"
-          dest: "{{ kube_conf }}"
+          src: "{{ KUBE_ADMIN_CONF }}"
+          dest: "{{ KUBE_CONF_DIR }}"
           owner: root
           group: kubeusers
           mode: 0775

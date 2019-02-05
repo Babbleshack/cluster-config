@@ -13,20 +13,9 @@
     state: present
 
 - import_tasks: docker.yml
-  when:
-          - ansible_distribution|lower == 'ubuntu'
-          - ansible_distribution_release|lower == 'bionic'
-
-
-- import_tasks: dockerce.yml
-  when:
-          - ansible_distribution|lower == 'ubuntu'
-          - ansible_distribution_release|lower == 'xenial'
 
 - name: Start and enable docker
   service:
     name: docker
     state: started
     enabled: yes
-
-- import_tasks: kubernetes.yml

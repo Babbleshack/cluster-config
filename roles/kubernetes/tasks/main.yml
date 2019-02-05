@@ -1,0 +1,7 @@
+---
+# Install Kubernetes 
+- import_tasks: kubernetes.yml
+  #- import_tasks: start_kubernetes.yml
+  #Start kube in kubemaster/kubeagent specific roles
+
+
