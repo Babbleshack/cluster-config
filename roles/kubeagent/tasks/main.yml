@@ -1,7 +1,8 @@
 ---
 # Install core packages (docker, python, docker, kube-components)
 - import_tasks: start_kubernetes.yml
-
+  tags: 
+        - agent-start-kubelet
 - import_tasks: reset_cluster.yml
   tags:
           - join_cluster

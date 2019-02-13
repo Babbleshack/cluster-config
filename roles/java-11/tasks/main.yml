@@ -1,9 +1,9 @@
 ---
-- name: Initialise  Kubernetes cluster
+- name: Install java-11-jdk/jre 
   vars:
-        java-11:
-                - openjdk-11-jdk
-                - openjdk-11-jre
+    java11:
+            - openjdk-11-jdk
+            - openjdk-11-jre
   apt:
-          name: "{{ java-11 }}"
-          state: present
+    name: "{{ java11 }}"
+    state: present

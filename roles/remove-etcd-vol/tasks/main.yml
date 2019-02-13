@@ -1,0 +1,8 @@
+---
+#Delete etcd persistent volume
+- name: Resetting kube agent...
+  shell: yes | kubeadm reset
+- name: Clean out etcd volume
+  file:
+          state: absent
+          path: /var/etcd/backups

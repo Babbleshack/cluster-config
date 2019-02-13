@@ -1,0 +1,11 @@
+---
+- hosts: kubemaster
+  remote_user: root
+  roles:
+          - remove-kube
+#- hosts: kubeagents
+#  remote_user: root
+#  roles:
+#        - remove-etcd-vol
+
+
