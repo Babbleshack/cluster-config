@@ -2,6 +2,21 @@
 # Install Kubernetes 
 - import_tasks: stop_kubernetes.yml
 - import_tasks: kubernetes.yml
+- name: Remove cni0 interface
+  shell: ip link delete cni0
+
+- name: Remove flannel.1 interface
+  shell: ip link delete flannel.1
+
+  #- name: Remove cni0 interface
+  #  net_interface:
+  #          name: cni0
+  #          state: absent
+  #- name: Remove flannel.1 interface
+  #  net_interface:
+  #          name: flannel.1
+  #          state: absent
+
   #Start kube in kubemaster/kubeagent specific roles
 
 
