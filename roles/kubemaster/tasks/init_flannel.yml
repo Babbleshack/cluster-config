@@ -7,6 +7,7 @@
           owner: root
           group: "{{ kube_users_g }}"
           mode: 0775
+
 - name: Initialise flannel kube service
   when: init_cluster is success 
   shell: |

@@ -15,7 +15,7 @@ enable_dashboard: yes
 
 #dirs
 kube_admin_conf: /etc/kubernetes/admin.conf
-kube_conf_dir: /opt/kubeconfig/config-files
+kube_conf_dir: /opt/kubeconfig/
 kubeOptDir: /opt/kubeconfig
 kube_opt_dir: /opt/kubeconfig
 kube_conf: /opt/kubeconfig/config
