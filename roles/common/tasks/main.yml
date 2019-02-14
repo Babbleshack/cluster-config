@@ -29,4 +29,7 @@
     state: started
     enabled: yes
 
+- name: Remove docker0 bridge
+  shell: ip link delete docker0
+
 - import_tasks: kubernetes.yml
