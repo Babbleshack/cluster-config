@@ -2,11 +2,16 @@
 # Install Kubernetes 
 - import_tasks: stop_kubernetes.yml
 - import_tasks: kubernetes.yml
+
 - name: Remove cni0 interface
   shell: ip link delete cni0
+  ignore_errors: yes
+  tags: remove_interface
 
 - name: Remove flannel.1 interface
   shell: ip link delete flannel.1
+  ignore_errors: yes
+  tags: remove_interface
 
   #- name: Remove cni0 interface
   #  net_interface:
