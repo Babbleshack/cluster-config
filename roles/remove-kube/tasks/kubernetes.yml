@@ -24,13 +24,3 @@
   file:
         path: "{{ KUBE_CONF_DIR }}" 
         state: absent
-
-- name: Copy kubelet service file
-  tags:
-          - configure-kube
-  copy:
-          src: files/kubelet.service
-          dest: "/lib/systemd/system/kubelet.service"
-          owner: root
-          group: root
-          force: yes

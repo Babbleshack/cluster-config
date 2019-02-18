@@ -1,7 +1,0 @@
-- name: Enable and check kubelet service
-  systemd:
-          name: kubelet
-          daemon_reload: yes
-          state: started
-          enabled: yes
-  register: started_kubelet

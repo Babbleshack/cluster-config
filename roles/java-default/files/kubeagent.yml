@@ -1,8 +1,5 @@
 ---
 - hosts: kubeagents
-  remote_user: root
   roles:
-    - java-default
     - common
-    - kubernetes
     - kubeagent

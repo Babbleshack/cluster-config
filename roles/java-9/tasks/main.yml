@@ -1,0 +1,11 @@
+---
+- name: Install java-9-jdk/jre 
+  vars:
+    java9:
+            - openjdk-9-jdk
+            - openjdk-9-jre
+  apt:
+    name: "{{ java9 }}"
+    install_recommends: yes
+    update_cache: yes
+    state: present

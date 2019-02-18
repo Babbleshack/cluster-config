@@ -7,6 +7,8 @@ KUBE_USER_GROUP: kubeusers
 
 KUBE_ADMIN_CONF: /etc/kubernetes/admin.conf
 KUBE_CONF: "{{ KUBE_CONF_DIR }}/config"
+KUBELET_CONF_DIR: "{{ KUBE_CONF_DIR }}/kubelet"
+KUBELET_CONF: "{{ KUBELET_CONF_DIR }}/config"
 
 #kubernetes
 kubemaster_ip : 10.30.16.10

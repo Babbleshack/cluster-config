@@ -7,7 +7,3 @@
 
 [kubeagents]
 10.30.16.[51:97] ansible_user=root
-
-[all]
-10.30.16.[50:97] ansible_user=root
-
