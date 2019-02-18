@@ -3,29 +3,57 @@
   apt_key:
       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
       state: present
+
 - name: Add Kubernetes repository
   apt_repository: 
     repo: 'deb http://apt.kubernetes.io/ kubernetes-xenial main'
     filename: 'kubernetes.list'
     update_cache: 'yes'
     state: present
+
 - name: Install kubelet
   apt: 
     name: 'kubelet'
     state: 'present'
     update_cache: 'yes'
+
 - name: Install kubadm
   apt: 
     name: 'kubeadm'
     state: 'present'
     update_cache: 'yes'
+
 - name: Install kubctl
   apt: 
     name: 'kubectl'
     state: 'present'
     update_cache: 'yes'
+
 - name: Install kub-cni
   apt:
     name: 'kubernetes-cni'
     state: 'present'
     update_cache: 'yes'
+
+- name: Create kubernetes configuration directory
+  tags:
+          - configure-kube
+  file:
+        path: "{{ KUBE_CONF_DIR }}" 
+        state: directory
+
+- name: Create kubelet configiration directory
+  tags:
+          - configure-kubelet
+  file:
+        path: "{{ KUBELET_CONF_DIR }}"
+        state: directory
+
+- name: Create kubelet config file
+  tags:
+          - configure-kubelet
+  copy:
+          src: files/kubelet-config.yml
+          dest: "{{ KUBELET_CONF }}"
+          owner: root
+          mode: 0755

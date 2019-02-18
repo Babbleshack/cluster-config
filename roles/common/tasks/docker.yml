@@ -1,5 +1,13 @@
-# Install docker from apt
+# Install docker
 - name: Install docker.io from repository
+  when: 
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'bionic'
   apt:
           name: docker.io 
           state: present
+
+- import_tasks: dockerce.yml
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'xenial'

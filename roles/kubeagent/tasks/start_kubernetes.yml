@@ -1,4 +1,4 @@
-- name: Enable and check kubelet service
+- name: Enable and start kubelet service
   systemd:
           name: kubelet
           daemon_reload: yes

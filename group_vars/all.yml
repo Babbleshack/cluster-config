@@ -1,6 +1,15 @@
 #ansible
 ansible_user: root
 
+#Kubernetes -- this file is a mess
+KUBE_CONF_DIR: /opt/kubeconfig
+KUBE_USER_GROUP: kubeusers
+
+KUBE_ADMIN_CONF: /etc/kubernetes/admin.conf
+KUBE_CONF: "{{ KUBE_CONF_DIR }}/config"
+KUBELET_CONF_DIR: "{{ KUBE_CONF_DIR }}/kubelet"
+KUBELET_CONF: "{{ KUBELET_CONF_DIR }}/config"
+
 #kubernetes
 kubemaster_ip : 10.30.16.10
 kubemaster_join_ip: 10.30.16.10:6443
@@ -12,16 +21,6 @@ pod_network_cidr: 10.244.0.0/16
 advertise_address: 10.30.16.10
 
 enable_dashboard: yes
-
-#dirs
-kube_admin_conf: /etc/kubernetes/admin.conf
-kube_conf_dir: /opt/kubeconfig/
-kubeOptDir: /opt/kubeconfig
-kube_opt_dir: /opt/kubeconfig
-kube_conf: /opt/kubeconfig/config
-
-# Groups and Users
-kube_users_g: kubeusers
 
 user: user
 user_g: user

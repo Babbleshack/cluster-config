@@ -5,20 +5,25 @@
 - import_tasks: reset_cluster.yml
 
 - name: Initialise  Kubernetes cluster
-  when: cluster_reset is success
+  when: cluster_reset
   shell: |
           kubeadm init --pod-network-cidr {{ pod_network_cidr }} \
           --token {{ kube_auth_token }} \
           --apiserver-advertise-address {{ kubemaster_ip }}
   register: init_cluster
 
-
-- import_tasks: create_config_dir.yml
-
-- import_tasks: start_kubernetes.yml
+- name: Copy admin.conf to /opt/kubeconfig directory
+  copy:
+          src: "{{ KUBE_ADMIN_CONF }}"
+          dest: "{{ KUBE_CONF_DIR }}"
+          owner: root
+          group: kubeusers
+          mode: 0775
+          remote_src: true
 
 - import_tasks: init_flannel.yml
+  environment:
+          KUBECONFIG: /etc/kubernetes/admin.conf 
  
 - import_tasks: dashboard.yml
-  when: started_kubelet is succeeded and enable_dashboard
 

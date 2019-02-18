@@ -1,0 +1,9 @@
+---
+- name: Install java-11-jdk/jre 
+  vars:
+    java11:
+            - openjdk-11-jdk
+            - openjdk-11-jre
+  apt:
+    name: "{{ java11 }}"
+    state: present

@@ -1,46 +1,13 @@
 ---
 #Install Kube dashboarwd
 - name: Deploy kubernetes dashboard into cluster
-  command: |
-          kubectl --kubeconfig={{ kube_conf }} \
-          create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+  vars:
+          KUBEWEBUI_MANIFEST: https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
+  tags: deploy_dashboard
   retries: 5
   delay: 2
   ignore_errors: true
   register: dashboard_ready
-
-- name: Creating kube-config dirs
-  file:
-          path: "{{ kube_conf_dir }}"
-          state: directory
-
-- name: Copy kubenetes dashboard user configs
-  copy: 
-          src: files/dashboard-admin-user.yml
-          dest: "{{ kube_conf_dir }}/dashboard-admin-user.yml"
-          owner: root
-          group: "{{ kube_users_g }}"
-          mode: 0775
-- name: Copy dashboard user RBAC bindings 
-  copy: 
-          src: files/dashboard-admin-binding.yml
-          dest: "{{ kube_conf_dir }}/dashboard-admin-binding.yml"
-          owner: root
-          group: "{{ kube_users_g }}"
-          mode: 0775
- 
-- name: Create Dashboard admin role 
   command: |
-          kubectl --kubeconfig={{ kube_conf }} \
-          apply -f {{ kube_conf_dir }}/dashboard-admin-user.yml
-  when: dashboard_ready
-  register: dashboard_user_ready
-          #k8s:
-          #state: present
-          #src: files/dashboard-admin-binding.yml
-          
-- name: Create Dashboard admin role binding
-  command: |
-          kubectl --kubeconfig={{ kube_conf }} \
-          apply -f {{ kube_conf_dir }}/dashboard-admin-binding.yml
-  when: dashboard_ready
+          kubectl --kubeconfig "{{ KUBE_ADMIN_CONF }}" \
+          create -f "{{ KUBEWEBUI_MANIFEST }}"

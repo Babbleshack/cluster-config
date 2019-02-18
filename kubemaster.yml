@@ -2,5 +2,7 @@
 - hosts: kubemaster
   remote_user: root
   roles:
+    - java-11
     - common
+    - kubernetes
     - kubemaster

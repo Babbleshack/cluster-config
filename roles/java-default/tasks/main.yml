@@ -1,0 +1,11 @@
+---
+- name: Install java jdk/jre 
+  vars:
+    java:
+            - default-jre
+            - default-jdk
+  apt:
+    name: "{{ java }}"
+    install_recommends: yes
+    update_cache: yes
+    state: present

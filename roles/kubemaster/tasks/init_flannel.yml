@@ -1,15 +1,14 @@
 ---
 #Initialise flannel
-- name: Copy flannel confi
+- name: Copy flannel CNI plugin manifest
   copy:
           src: files/kube-flannel.yml
-          dest: "{{ kube_conf_dir }}"
+          dest: "{{ KUBE_CONF_DIR }}"
           owner: root
-          group: "{{ kube_users_g }}"
+          group: "{{ KUBE_USER_GROUP }}"
           mode: 0775
-
-- name: Initialise flannel kube service
+- name: Initialise flannel kube service (coreDNS too)
   when: init_cluster is success 
   shell: |
-          kubectl apply -f {{ kube_conf_dir}}/kube-flannel.yml
+          kubectl apply -f {{ KUBE_CONF_DIR }}/kube-flannel.yml
 

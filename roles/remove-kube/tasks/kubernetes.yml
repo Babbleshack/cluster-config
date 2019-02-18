@@ -1,0 +1,26 @@
+# Install kubernetes repository and components
+- name: Remove kubelet
+  apt: 
+    name: 'kubelet'
+    state: 'absent'
+    update_cache: 'yes'
+- name: Remove kubadm
+  apt: 
+    name: 'kubeadm'
+    state: 'absent'
+    update_cache: 'yes'
+- name: Remove kubctl
+  apt: 
+    name: 'kubectl'
+    state: 'absent'
+    update_cache: 'yes'
+- name: Remove kub-cni
+  apt:
+    name: 'kubernetes-cni'
+    state: 'absent'
+    update_cache: 'yes'
+
+- name: Remove kube config
+  file:
+        path: "{{ KUBE_CONF_DIR }}" 
+        state: absent

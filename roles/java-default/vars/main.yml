@@ -1,0 +1,3 @@
+os_environment:
+        - key: KUBECONFIG
+          value: /opt/kubeconfig/config
