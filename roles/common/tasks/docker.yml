@@ -1,13 +1,33 @@
 # Install docker
-- name: Install docker.io from repository
-  when: 
-          - ansible_distribution|lower == 'ubuntu'
-          - ansible_distribution_release|lower == 'bionic'
-  apt:
-          name: docker.io 
-          state: present
+- name: Add docker gpg key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
 
-- import_tasks: dockerce.yml
+- name: Add docker repository 
   when:
           - ansible_distribution|lower == 'ubuntu'
           - ansible_distribution_release|lower == 'xenial'
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable 
+    state: present
+
+- name: Add docker repository 
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'bionic'
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable 
+    state: present
+
+- name: Install docker-ce
+  apt:
+    name: docker-ce=18.06.2~ce~3-0~ubuntu
+
+#- name: install docker-ce-cli
+#  apt:
+#    name: docker-ce-cli
+#
+#- name: Install containerd.io
+#  apt:
+#    name: containerd.io

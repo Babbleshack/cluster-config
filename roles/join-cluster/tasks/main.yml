@@ -1,0 +1,31 @@
+---
+- name: load br_netfilter
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: remove old cni confs
+  file:
+    path: /var/lib/cni
+    state: absent
+
+- name: Reset kubeadm
+  shell: kubeadm reset -f
+
+- name: Delete Bootstrap
+  file:
+    path: /etc/kubernetes/bootstrap-kubelet.conf
+    state: absent
+- name: Delete Kubelet
+  file:
+    path: /etc/kubernetes/kubelet.conf
+    state: absent
+- name: Delete ca cert
+  file:
+    path: /etc/kubernetes/pki/ca.crt
+    state: absent
+- name: Joining Cluster...
+  command: |
+    kubeadm join {{ kubemaster_join_ip }} \
+    --token {{ kube_auth_token }} \
+    --discovery-token-unsafe-skip-ca-verification

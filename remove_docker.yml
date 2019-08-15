@@ -1,0 +1,17 @@
+---
+- hosts: kubeagents
+  remote_user: root
+  tasks:
+    - name: remove docker packages
+      vars: 
+        dockerpackages:
+          - docker
+          - docker-engine
+          - docker.io
+          - containerd
+          - runc
+          - docker-ce-cli
+          - docker-ce
+      apt:
+        name: "{{ dockerpackages }}"
+        state: absent

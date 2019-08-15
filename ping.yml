@@ -1,0 +1,6 @@
+---
+- hosts: kubeagents
+  remote_user: root
+  tasks:
+          - name: ping
+            ping: 

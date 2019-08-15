@@ -1,0 +1,16 @@
+---
+- hosts: kubeagents
+  remote_user: root
+  tasks:
+    - name: create hadoop tmp dir
+      file:
+        path: /opt/hadoop/hadooptmpdata
+        state: directory
+    - name: create hadoop namenode dir
+      file:
+        path: /opt/hadoop/hdfs/namenode
+        state: directory
+    - name: create hadoop datanode dir
+      file:
+        path: /opt/hadoop/hdfs/datanode
+        state: directory

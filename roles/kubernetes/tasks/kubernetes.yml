@@ -19,7 +19,7 @@
 
 - name: Install kubadm
   apt: 
-    name: 'kubeadm'
+    name: 'kubeadm=1.15.2-00'
     state: 'present'
     update_cache: 'yes'
 

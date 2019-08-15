@@ -6,6 +6,8 @@
   vars:
     corepackages:
             - apt-transport-https
+            - curl
+            - software-properties-common
             - python
             - vim
   apt:

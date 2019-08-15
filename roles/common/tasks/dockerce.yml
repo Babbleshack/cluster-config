@@ -4,12 +4,39 @@
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
-- name: Add docker-ce repository
-  apt_repository: 
-          repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
-          filename: docker-ce.list
-          state: present
-          update_cache: yes
-- name: Install docker-ce 17.9
+
+- name: Add docker repository 
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'xenial'
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable 
+    state: present
+
+- name: Add docker repository 
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'bionic'
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable 
+    state: present
+
+- name: Install docker-ce 18.06.2~ce~3-0~ubuntu
   apt:
-          name:  docker-ce=17.09.0~ce-0~ubuntu
+    name: docker-ce=18.06.2~ce~3-0~ubuntu
+
+- name: copy docker daemon
+  copy:
+    src: docker-daemon.json
+    dest: /etc/docker/daemon.json
+
+- name: make docker systemd service file
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+
+- name: Restart Docker Service  
+    systemd:
+      name: docker
+      state: restarted
+      daemon_reload: yes

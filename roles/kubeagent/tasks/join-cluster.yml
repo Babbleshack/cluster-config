@@ -1,5 +1,4 @@
 ---
-- debug: var=output.stdout_lines
 - name: Joining Cluster...
   command: |
           kubeadm join {{ kubemaster_join_ip }} \
