@@ -20,6 +20,14 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable 
     state: present
 
+- name: Add docker repository (Disco)
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'disco'
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+
 - name: Install docker-ce
   apt:
     name: docker-ce=18.06.2~ce~3-0~ubuntu

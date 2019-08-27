@@ -1,13 +1,17 @@
 ---
-- hosts: kubemaster
-  remote_user: root
-  roles:
-          - remove-kube
-- hosts: kubeagents
-  remote_user: root
-  roles:
-          - remove-kube
+#- hosts: kubemaster
+#  remote_user: root
+#  roles:
+#          - remove-kube
+#- hosts: kubeagents
+#  remote_user: root
+#  roles:
+#          - remove-kube
 
+- hosts: disco
+  remote_user: root
+  roles:
+          - remove-kube
 #- hosts: kubeagents
 #  remote_user: root
 #  roles:

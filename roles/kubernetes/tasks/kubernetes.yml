@@ -13,7 +13,7 @@
 
 - name: Install kubelet
   apt: 
-    name: 'kubelet'
+    name: 'kubelet=1.15.2-00'
     state: 'present'
     update_cache: 'yes'
 

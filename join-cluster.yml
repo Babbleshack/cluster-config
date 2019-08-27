@@ -1,5 +1,9 @@
 ---
-- hosts: kubeagents
+- hosts: disco
   remote_user: root
   roles:
     - join-cluster
+    #- hosts: kubeagents
+    #  remote_user: root
+    #  roles:
+    #    - join-cluster
