@@ -32,22 +32,6 @@
   apt:
     name: docker-ce=18.06.2~ce~3-0~ubuntu
 
-- name: Create Docker Daemon Config
-  copy:
-    src: docker-daemon.json
-    dest: /etc/docker/daemon.json
-
-- name: Create docker systemd service dir
-  file:
-    path: /etc/systemd/system/docker.service.d
-    state: directory
-
-- name: Restart Docker Service  
-  systemd:
-    name: docker
-    state: restarted
-    daemon_reload: yes
-
 #- name: install docker-ce-cli
 #  apt:
 #    name: docker-ce-cli
