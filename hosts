@@ -10,3 +10,7 @@
 
 [disco]
 10.30.16.63 ansible_user=root
+
+[database]
+10.30.16.80 ansible_user=root
+10.30.16.35 ansible_user=root
