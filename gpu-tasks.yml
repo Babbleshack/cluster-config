@@ -1,5 +1,5 @@
 ---
-- hosts: gpuhost
+- hosts: gpu
   remote_user: root
   roles:
     - gpu
