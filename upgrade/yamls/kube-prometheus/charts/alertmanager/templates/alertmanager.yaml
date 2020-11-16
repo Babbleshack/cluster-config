@@ -1,0 +1,30 @@
+---
+# Source: kube-prometheus/charts/alertmanager/templates/alertmanager.yaml
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: Alertmanager
+metadata:
+  labels:
+    alertmanager: RELEASE-NAME
+    app: alertmanager
+    chart: alertmanager-0.0.13
+    heritage: Helm
+    release: RELEASE-NAME
+  name: RELEASE-NAME
+spec:
+  baseImage: "quay.io/prometheus/alertmanager"
+  externalUrl: http://RELEASE-NAME-alertmanager.default:9093
+  paused: false
+  replicas: 1
+  resources:
+    {}
+  version: "v0.14.0"
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchLabels:
+              app: alertmanager
+              alertmanager: RELEASE-NAME

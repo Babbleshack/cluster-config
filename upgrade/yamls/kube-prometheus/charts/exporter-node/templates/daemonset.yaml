@@ -1,0 +1,74 @@
+---
+# Source: kube-prometheus/charts/exporter-node/templates/daemonset.yaml
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    app: exporter-node
+    chart: exporter-node-0.2.0
+    component: node-exporter
+    heritage: Helm
+    release: RELEASE-NAME
+  name: RELEASE-NAME-exporter-node
+spec:
+  template:
+    metadata:
+      labels:
+        app: RELEASE-NAME-exporter-node
+        component: node-exporter
+        release: RELEASE-NAME
+    spec:
+      containers:
+        - name: node-exporter
+          image: "quay.io/prometheus/node-exporter:v0.15.2"
+          imagePullPolicy: "IfNotPresent"
+          args:
+          - --web.listen-address=0.0.0.0:9100
+          - --path.procfs=/host/proc
+          - --path.sysfs=/host/sys
+          - --collector.textfile.directory=/run/prometheusports:
+          - name: metrics
+            containerPort: 9100
+            hostPort: 9100
+          resources:
+            limits:
+              cpu: 200m
+              memory: 50Mi
+            requests:
+              cpu: 100m
+              memory: 30Mi
+          volumeMounts:
+          - mountPath: /host/proc
+            name: proc
+            readOnly: true
+          - mountPath: /host/sys
+            name: sys
+            readOnly: true
+          - mountPath: /run/prometheus
+            name: collector-textfiles
+            readOnly: true
+        - name: nvidia-dcgm-exporter
+          image: "nvidia/dcgm-exporter:1.4.6"
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 0
+          volumeMounts:
+          - mountPath: /run/prometheus
+            name: collector-textfiles
+      volumes:
+      - hostPath:
+          path: /proc
+        name: proc
+      - hostPath:
+          path: /sys
+        name: sys
+      - emptyDir:
+          medium: Memory
+        name: collector-textfiles
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      hostNetwork: true
+      hostPID: true
+      nodeSelector:
+        hardware-type: NVIDIAGPU

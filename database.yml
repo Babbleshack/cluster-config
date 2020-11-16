@@ -1,0 +1,9 @@
+---
+- hosts: database
+  remote_user: root
+  roles:
+    - java-default
+    - common
+    - kubernetes
+    - join-cluster
+    #- kubeagent

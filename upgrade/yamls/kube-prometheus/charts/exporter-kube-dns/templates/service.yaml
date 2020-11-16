@@ -1,0 +1,27 @@
+---
+# Source: kube-prometheus/charts/exporter-kube-dns/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: exporter-kube-dns
+    component: kube-dns
+    heritage: Helm
+    release: RELEASE-NAME
+    chart: exporter-kube-dns-0.1.5
+  name: RELEASE-NAME-exporter-kube-dns
+  namespace: kube-system
+spec:
+  clusterIP: None
+  ports:
+    - name: http-metrics-dnsmasq
+      port: 10054
+      protocol: TCP
+      targetPort: 10054
+    - name: http-metrics-skydns
+      port: 10055
+      protocol: TCP
+      targetPort: 10055
+  selector:
+    k8s-app: kube-dns
+  type: ClusterIP

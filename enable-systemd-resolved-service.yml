@@ -1,0 +1,7 @@
+- hosts: workers
+  tasks:
+        - name: Starting and enabling systemd-resolved
+          systemd:
+            name: systemd-resolved
+            state: started
+            enabled: yes

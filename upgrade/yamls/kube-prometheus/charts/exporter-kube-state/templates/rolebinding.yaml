@@ -1,0 +1,18 @@
+---
+# Source: kube-prometheus/charts/exporter-kube-state/templates/rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  labels:
+    app: exporter-kube-state
+    chart: exporter-kube-state-0.1.15
+    heritage: Helm
+    release: RELEASE-NAME
+  name: RELEASE-NAME-exporter-kube-state
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: RELEASE-NAME-exporter-kube-state
+subjects:
+- kind: ServiceAccount
+  name: RELEASE-NAME-exporter-kube-state

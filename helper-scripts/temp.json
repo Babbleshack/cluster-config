@@ -5,12 +5,12 @@
     "annotations": {
       "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Namespace\",\"metadata\":{\"annotations\":{},\"name\":\"resource\"}}\n"
     },
-    "creationTimestamp": "2019-07-08T16:55:12Z",
-    "deletionTimestamp": "2019-07-22T12:53:13Z",
+    "creationTimestamp": "2019-09-05T17:38:37Z",
+    "deletionTimestamp": "2019-09-05T17:42:06Z",
     "name": "resource",
-    "resourceVersion": "54992543",
+    "resourceVersion": "15967251",
     "selfLink": "/api/v1/namespaces/resource",
-    "uid": "26a895ba-a1a1-11e9-8cdf-40167e6fb498"
+    "uid": "28af8c53-0a8d-4e08-ad42-94ac0ae6b501"
   },
   "spec": {
     "finalizers": []

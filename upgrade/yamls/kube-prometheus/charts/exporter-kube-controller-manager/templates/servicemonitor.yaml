@@ -1,0 +1,30 @@
+---
+# Source: kube-prometheus/charts/exporter-kube-controller-manager/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ServiceMonitor
+metadata:
+  labels:
+    chart: "exporter-kube-controller-manager-0.1.7"
+    component: kube-controller-manager
+    heritage: "Helm"
+    release: "RELEASE-NAME"
+    prometheus: RELEASE-NAME
+  name: RELEASE-NAME-exporter-kube-controller-manager
+spec:
+  jobLabel: component
+  selector:
+    matchLabels:
+      app: exporter-kube-controller-manager
+      component: kube-controller-manager
+  namespaceSelector:
+    matchNames:
+      - "kube-system"
+  endpoints:
+  - port: http-metrics
+    interval: 15s
+    tlsConfig:
+      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      # Skip verification until we have resolved why the certificate validation
+      # for the kubelet on API server nodes fail.
+      insecureSkipVerify: true
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token

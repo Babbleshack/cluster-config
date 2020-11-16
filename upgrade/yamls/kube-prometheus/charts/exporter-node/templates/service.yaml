@@ -1,0 +1,23 @@
+---
+# Source: kube-prometheus/charts/exporter-node/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: RELEASE-NAME-exporter-node
+  labels:
+    app: exporter-node
+    component: node-exporter
+    heritage: Helm
+    release: RELEASE-NAME
+    chart: exporter-node-0.2.0
+spec:
+  type: ClusterIP
+  ports:
+  - name: metrics
+    port: 9100
+    targetPort: metrics
+    protocol: TCP
+  selector:
+    app: RELEASE-NAME-exporter-node
+    component: node-exporter
+    release: RELEASE-NAME

@@ -1,0 +1,23 @@
+---
+# Source: kube-prometheus/charts/exporter-kube-controller-manager/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: exporter-kube-controller-manager
+    component: kube-controller-manager
+    heritage: Helm
+    release: RELEASE-NAME
+    chart: exporter-kube-controller-manager-0.1.7
+  name: RELEASE-NAME-exporter-kube-controller-manager
+  namespace: kube-system
+spec:
+  clusterIP: None
+  ports:
+    - name: http-metrics
+      port: 10252
+      protocol: TCP
+      targetPort: 10252
+  selector:
+    k8s-app: kube-controller-manager
+  type: ClusterIP

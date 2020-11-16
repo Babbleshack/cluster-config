@@ -1,0 +1,23 @@
+---
+# Source: kube-prometheus/charts/exporter-kube-state/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: RELEASE-NAME-exporter-kube-state
+  labels:
+    app: exporter-kube-state
+    component: kube-state
+    heritage: Helm
+    release: RELEASE-NAME
+    chart: exporter-kube-state-0.1.15
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: kube-state-metrics
+  selector:
+    app: RELEASE-NAME-exporter-kube-state
+    component: kube-state
+    release: RELEASE-NAME

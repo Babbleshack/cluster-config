@@ -13,13 +13,13 @@
 
 - name: Install kubelet
   apt: 
-    name: 'kubelet=1.15.2-00'
+    name: 'kubelet=1.17.4-00'
     state: 'present'
     update_cache: 'yes'
 
 - name: Install kubadm
   apt: 
-    name: 'kubeadm=1.15.2-00'
+    name: 'kubeadm=1.17.4-00'
     state: 'present'
     update_cache: 'yes'
 

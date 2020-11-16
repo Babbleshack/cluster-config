@@ -28,9 +28,38 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
     state: present
 
-- name: Install docker-ce
+- name: Add docker repository (Focal)
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'focal'
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Install containerd
   apt:
-    name: docker-ce=18.06.2~ce~3-0~ubuntu
+    name: containerd.io=1.2.13-2
+
+- name: Install docker-ce cli 5:19.03.12~3-0~ubuntu-bionic
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'bionic'
+  apt:
+    name: docker-ce-cli=5:19.03.12~3-0~ubuntu-bionic
+
+- name: Install docker-ce 5:19.03.12~3-0~ubuntu-xenial
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'xenial'
+  apt:
+    name: docker-ce-cli=5:19.03.12~3-0~ubuntu-xenial
+
+- name: Install docker-ce 5:19.03.12~3-0~ubuntu-focal
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower == 'focal'
+  apt:
+    name: docker-ce-cli=5:19.03.12~3-0~ubuntu-focal
 
 - name: Create Docker Daemon Config
   copy:
@@ -38,6 +67,9 @@
     dest: /etc/docker/daemon.json
 
 - name: Create docker systemd service dir
+  when:
+          - ansible_distribution|lower == 'ubuntu'
+          - ansible_distribution_release|lower != 'focal'
   file:
     path: /etc/systemd/system/docker.service.d
     state: directory

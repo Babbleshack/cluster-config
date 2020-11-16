@@ -1,9 +1,9 @@
 ---
 - hosts: kubeagents
   remote_user: root
+  ignore_unreachable: true
   roles:
     - java-default
     - common
     - kubernetes
     - join-cluster
-    #- kubeagent

@@ -1,0 +1,29 @@
+---
+# Source: kube-prometheus/charts/prometheus/templates/clusterrole.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  labels:
+    app: prometheus
+    chart: prometheus-0.0.25
+    heritage: Helm
+    release: RELEASE-NAME
+  name: RELEASE-NAME-prometheus
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources:
+  - configmaps
+  verbs: ["get"]
+- apiGroups: [""]
+  resources:
+  - nodes/metrics
+  verbs: ["get"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]

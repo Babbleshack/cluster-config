@@ -1,0 +1,44 @@
+---
+# Source: kube-prometheus/charts/exporter-kube-state/templates/clusterrole.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  labels:
+    app: exporter-kube-state
+    chart: exporter-kube-state-0.1.15
+    heritage: Helm
+    release: RELEASE-NAME
+  name: RELEASE-NAME-exporter-kube-state
+rules:
+- apiGroups: [""]
+  resources:
+  - namespaces
+  - nodes
+  - pods
+  - services
+  - resourcequotas
+  - replicationcontrollers
+  - limitranges
+  - persistentvolumeclaims
+  - persistentvolumes
+  - endpoints
+  verbs: ["list", "watch"]
+- apiGroups: ["extensions"]
+  resources:
+  - daemonsets
+  - deployments
+  - replicasets
+  verbs: ["list", "watch"]
+- apiGroups: ["apps"]
+  resources:
+  - statefulsets
+  verbs: ["list", "watch"]
+- apiGroups: ["batch"]
+  resources:
+  - cronjobs
+  - jobs
+  verbs: ["list", "watch"]
+- apiGroups: ["autoscaling"]
+  resources:
+  - horizontalpodautoscalers
+  verbs: ["list", "watch"]

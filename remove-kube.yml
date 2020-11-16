@@ -8,10 +8,10 @@
 #  roles:
 #          - remove-kube
 
-- hosts: disco
+- hosts: kubemaster
   remote_user: root
   roles:
-          - remove-kube
+    - remove-kube
 #- hosts: kubeagents
 #  remote_user: root
 #  roles:

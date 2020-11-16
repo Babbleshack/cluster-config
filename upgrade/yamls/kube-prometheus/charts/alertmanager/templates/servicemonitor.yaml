@@ -1,0 +1,26 @@
+---
+# Source: kube-prometheus/charts/alertmanager/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: alertmanager
+    chart: "alertmanager-0.0.13"
+    component: alertmanager
+    heritage: "Helm"
+    release: "RELEASE-NAME"
+    prometheus: RELEASE-NAME
+  name: RELEASE-NAME-alertmanager
+spec:
+  jobLabel: app
+  selector:
+    matchLabels:
+      alertmanager: RELEASE-NAME
+      app: alertmanager
+      chart: alertmanager-0.0.13
+  namespaceSelector:
+    matchNames:
+      - "default"
+  endpoints:
+  - port: http
+    interval: 30s

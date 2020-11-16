@@ -1,0 +1,25 @@
+---
+# Source: kube-prometheus/charts/exporter-kube-state/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ServiceMonitor
+metadata:
+  labels:
+    chart: "exporter-kube-state-0.1.15"
+    component: kube-state
+    heritage: "Helm"
+    release: "RELEASE-NAME"
+    prometheus: RELEASE-NAME
+  name: RELEASE-NAME-exporter-kube-state
+spec:
+  jobLabel: component
+  selector:
+    matchLabels:
+      app: exporter-kube-state
+      component: kube-state
+  namespaceSelector:
+    matchNames:
+      - "default"
+  endpoints:
+  - port: kube-state-metrics
+    interval: 15s
+    honorLabels: true

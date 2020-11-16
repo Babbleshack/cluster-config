@@ -1,0 +1,20 @@
+---
+# Source: kube-prometheus/charts/grafana/templates/svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: RELEASE-NAME-grafana
+    chart: "grafana-0.0.24"
+    heritage: "Helm"
+    release: "RELEASE-NAME"
+  name: RELEASE-NAME-grafana
+spec:
+  ports:
+    - name: "http"
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: RELEASE-NAME-grafana
+  type: "ClusterIP"

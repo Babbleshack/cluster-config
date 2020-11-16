@@ -1,9 +1,11 @@
 ---
-- hosts: disco
+- hosts: gpu
   remote_user: root
-  roles:
-    - join-cluster
-    #- hosts: kubeagents
-    #  remote_user: root
-    #  roles:
-    #    - join-cluster
+  tasks:
+    - name: Reset kubeadm
+      shell: kubeadm reset -f
+    - name: Joining Cluster...
+      command: |
+        kubeadm join {{ kubemaster_join_ip }} \
+        --token ldk9al.046n75et7ybxvuc3  \
+        --discovery-token-ca-cert-hash sha256:dd3e4373e8d34df719b8ae79e54608e433c634d6d0f48e7d663574f49e226bd7

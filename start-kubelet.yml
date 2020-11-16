@@ -1,0 +1,41 @@
+---
+- name: configure kubelet services
+  hosts: workers
+  tasks:
+
+    - name: Stop kubelet
+      service:
+        name: kubelet
+        state: stopped
+
+    - name: Stop docker
+      service:
+        name: docker
+        state: stopped
+  
+    - name: Install docker-ce 
+      apt:
+        name: docker-ce=5:19.03.1~3-0~ubuntu-xenial
+
+    - name: Enable and start systemd-resolved
+      service:
+        name: systemd-resolved
+        enabled: yes
+        state: started
+
+    - name: Enable and start docker service
+      service:
+        name: docker
+        enabled: yes
+        state: restarted
+        
+    - name: Enable and start Kubelet
+      service:
+        name: kubelet
+        enabled: yes
+        state: restarted
+
+#- name: Start kubelet
+#      service:
+  #        name: kubelet
+  #      state: restarted

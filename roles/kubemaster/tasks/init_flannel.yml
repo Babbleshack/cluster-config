@@ -10,5 +10,5 @@
 - name: Initialise flannel kube service (coreDNS too)
   when: init_cluster is success 
   shell: |
-          kubectl apply -f {{ KUBE_CONF_DIR }}/kube-flannel.yml
+          kubectl apply -f /opt/kubeconfig/kube-flannel.yml
 

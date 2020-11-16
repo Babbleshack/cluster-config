@@ -1,0 +1,23 @@
+---
+# Source: kube-prometheus/charts/exporter-kube-etcd/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: exporter-kube-etcd
+    component: kube-etcd
+    heritage: Helm
+    release: RELEASE-NAME
+    chart: exporter-kube-etcd-0.1.9
+  name: RELEASE-NAME-exporter-kube-etcd
+  namespace: kube-system
+spec:
+  clusterIP: None
+  ports:
+    - name: http-metrics
+      port: 4001
+      protocol: TCP
+      targetPort: 4001
+  selector:
+    k8s-app: etcd-server
+  type: ClusterIP

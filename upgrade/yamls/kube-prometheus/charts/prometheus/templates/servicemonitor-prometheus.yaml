@@ -1,0 +1,25 @@
+---
+# Source: kube-prometheus/charts/prometheus/templates/servicemonitor-prometheus.yaml
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: prometheus
+    chart: "prometheus-0.0.25"
+    heritage: "Helm"
+    release: "RELEASE-NAME"
+    prometheus: RELEASE-NAME
+  name: RELEASE-NAME-prometheus
+spec:
+  jobLabel: app
+  selector:
+    matchLabels:
+      app: prometheus
+      prometheus: RELEASE-NAME
+      chart: prometheus-0.0.25
+  namespaceSelector:
+    matchNames:
+      - "default"
+  endpoints:
+  - port: http
+    interval: 30s

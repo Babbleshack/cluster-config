@@ -1,0 +1,26 @@
+---
+# Source: kube-prometheus/charts/grafana/templates/servicemonitors.yaml
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: grafana
+    chart: "grafana-0.0.24"
+    component: grafana
+    heritage: "Helm"
+    release: "RELEASE-NAME"
+    prometheus: RELEASE-NAME
+  name: RELEASE-NAME-grafana
+spec:
+  jobLabel: RELEASE-NAME-grafana
+  selector:
+    matchLabels:
+      grafana: RELEASE-NAME
+      app: grafana
+      chart: grafana-0.0.24
+  namespaceSelector:
+    matchNames:
+      - "default"
+  endpoints:
+  - port: http
+    interval: 30s

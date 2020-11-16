@@ -1,0 +1,32 @@
+---
+- hosts: kubeagents
+  remote_user: root
+  tasks:
+    - name: perf paranoid
+      sysctl:
+        name: kernel.perf_event_paranoid
+        value: 0
+        sysctl_set: yes
+        state: present
+        reload: yes
+    - name: rp_filter
+      sysctl:
+        name: net.ipv4.conf.default.rp_filter
+        value: 0
+        sysctl_set: yes
+        state: present
+        reload: yes
+    - name: all rp_filter
+      sysctl:
+        name: net.ipv4.conf.all.rp_filter
+        value: 0
+        sysctl_set: yes
+        state: present
+        reload: yes
+    - name: iptable bridge nf call
+      sysctl:
+        name: net.bridge.bridge-nf-call-iptables
+        value: '1'
+        sysctl_set: yes
+        state: present
+        reload: yes
