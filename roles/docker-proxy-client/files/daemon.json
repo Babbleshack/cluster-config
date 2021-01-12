@@ -1,0 +1,10 @@
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2",
+  "insecure-registries": ["10.30.16.22:5000"],
+  "registry-mirrors": ["http://10.30.16.22:5000"]
+}

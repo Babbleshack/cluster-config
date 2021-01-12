@@ -19,6 +19,16 @@
 [gpu-legacy]
 10.30.16.21
 
+[v100]
+10.30.16.19
+
+[blades]
+10.30.16.23 ansible_user=root
+10.30.16.26 ansible_user=root
+10.30.16.27 ansible_user=root
+10.30.16.28 ansible_user=root
+10.30.16.29 ansible_user=root
+
 [workers]
 10.30.16.11 
 10.30.16.12 

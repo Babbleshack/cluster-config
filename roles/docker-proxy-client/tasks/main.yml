@@ -1,0 +1,18 @@
+---
+##Configure Clients to use docker proxy
+- name: Stopping docker daemon
+  ansible.builtin.systemd:
+    name: docker
+    state: stopped
+
+- name: copy config file
+  copy:
+    src: files/daemon.json
+    dest: /etc/docker/daemon.json
+    owner: root
+    mode: 0644
+
+- name: Starting docker daemon
+  ansible.builtin.systemd:
+    name: docker
+    state: started

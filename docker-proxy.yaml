@@ -1,0 +1,6 @@
+---
+- hosts: workers
+  remote_user: root
+  ignore_unreachable: true
+  roles:
+    - docker-proxy-client
