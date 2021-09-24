@@ -1,0 +1,5 @@
+---
+- hosts: kubemaster
+  remote_user: root
+  roles:
+    - kubernetes

@@ -1,31 +1,21 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
-!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
-!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
-!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	0.0.0	/c031a7c0/
-Add Kubernetes repository	roles/common/tasks/kubernetes.yml	/^- name: Add Kubernetes repository$/;"	p
-Add docker-ce repository	roles/common/tasks/docker-ce.yml	/^- name: Add docker-ce repository$/;"	p
-Add kubernetes repository key	roles/common/tasks/kubernetes.yml	/^- name: Add kubernetes repository key$/;"	p
-Install docker-ce cert	roles/common/tasks/docker-ce.yml	/^- name: Install docker-ce cert$/;"	p
-Install kub-cni	roles/common/tasks/kubernetes.yml	/^- name: Install kub-cni$/;"	p
-Install kubadm	roles/common/tasks/kubernetes.yml	/^- name: Install kubadm$/;"	p
-Install kubctl	roles/common/tasks/kubernetes.yml	/^- name: Install kubctl$/;"	p
-Install kubeley	roles/common/tasks/kubernetes.yml	/^- name: Install kubeley$/;"	p
-create-cluster.sh	helper-scripts/create-cluster.sh	1;"	F
-dashboard-admin-binding.yml	files/dashboard-admin-binding.yml	1;"	F
-dashboard-admin-user.yml	files/dashboard-admin-user.yml	1;"	F
-deploy.yml	deploy.yml	1;"	F
-docker-ce.yml	roles/common/tasks/docker-ce.yml	1;"	F
-docker.io	roles/common/tasks/docker.yml	/^  name: docker.io $/;"	p
-docker.yml	roles/common/tasks/docker.yml	1;"	F
-get_token.sh	helper-scripts/get_token.sh	1;"	F
-init-kuber-cluster.yml	init-kuber-cluster.yml	1;"	F
-join-cluster.yml	join-cluster.yml	1;"	F
-kube-flannel.yml	kube-flannel.yml	1;"	F
-kubeagent.yml	roles/kubeagent.yml	1;"	F
-kubemaster.yml	roles/kubemaster.yml	1;"	F
-kubernetes.yml	roles/common/tasks/kubernetes.yml	1;"	F
-main.yml	roles/common/tasks/main.yml	1;"	F
-remove-node.yml	remove-node.yml	1;"	F
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+checkDesiredVersion	upgrade/get_helm.sh	/^checkDesiredVersion() {$/;"	f
+checkHelmInstalledVersion	upgrade/get_helm.sh	/^checkHelmInstalledVersion() {$/;"	f
+cleanup	upgrade/get_helm.sh	/^cleanup() {$/;"	f
+downloadFile	upgrade/get_helm.sh	/^downloadFile() {$/;"	f
+fail_trap	upgrade/get_helm.sh	/^fail_trap() {$/;"	f
+help	upgrade/get_helm.sh	/^help () {$/;"	f
+initArch	upgrade/get_helm.sh	/^initArch() {$/;"	f
+initOS	upgrade/get_helm.sh	/^initOS() {$/;"	f
+installFile	upgrade/get_helm.sh	/^installFile() {$/;"	f
+runAsRoot	upgrade/get_helm.sh	/^runAsRoot() {$/;"	f
+testVersion	upgrade/get_helm.sh	/^testVersion() {$/;"	f
+verifyChecksum	upgrade/get_helm.sh	/^verifyChecksum() {$/;"	f
+verifyFile	upgrade/get_helm.sh	/^verifyFile() {$/;"	f
+verifySignatures	upgrade/get_helm.sh	/^verifySignatures() {$/;"	f
+verifySupported	upgrade/get_helm.sh	/^verifySupported() {$/;"	f

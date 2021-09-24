@@ -11,29 +11,36 @@
     update_cache: 'yes'
     state: present
 
-- name: Install kubelet
+- name: Install kubernetes
   apt: 
-    name: 'kubelet=1.17.4-00'
-    state: 'present'
-    update_cache: 'yes'
+    name: ['kubelet=1.19.3-00', 'kubeadm=1.19.3-00', 'kubectl=1.19.3-00', 'kubernetes-cni']
+    state: present 
+    update_cache: yes
 
-- name: Install kubadm
-  apt: 
-    name: 'kubeadm=1.17.4-00'
-    state: 'present'
-    update_cache: 'yes'
-
-- name: Install kubctl
-  apt: 
-    name: 'kubectl'
-    state: 'present'
-    update_cache: 'yes'
-
-- name: Install kub-cni
-  apt:
-    name: 'kubernetes-cni'
-    state: 'present'
-    update_cache: 'yes'
+#
+#- name: Install kubelet
+#  apt: 
+#    name: 'kubelet=1.19.3-00'
+#    state: 'present'
+#    update_cache: 'yes'
+#
+#- name: Install kubadm
+#  apt: 
+#    name: 'kubeadm=1.19.3-00'
+#    state: 'present'
+#    update_cache: 'yes'
+#
+#- name: Install kubctl
+#  apt: 
+#    name: 'kubectl'
+#    state: 'present'
+#    update_cache: 'yes'
+#
+#- name: Install kub-cni
+#  apt:
+#    name: 'kubernetes-cni'
+#    state: 'present'
+#    update_cache: 'yes'
 
 - name: Create kubernetes configuration directory
   tags:
